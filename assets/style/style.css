@@ -1,0 +1,340 @@
+/* ============ IMPORT FONT CỔ ĐIỂN ============ */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Be+Vietnam+Pro:wght@300;400;600&display=swap');
+
+:root {
+    /* Bảng màu Vintage */
+    --primary-color: #8b0000;      /* Đỏ gạch sẫm (Màu cờ/cách mạng) */
+    --secondary-color: #2c241b;    /* Nâu đen (Màu mực tàu) */
+    --accent-color: #d4a017;       /* Vàng đồng cổ */
+    --bg-color: #f4ecd8;           /* Màu giấy ố vàng (Parchment) */
+    --card-bg: #fffbf0;            /* Màu giấy trắng ngà */
+    --text-color: #3e2723;         /* Màu chữ nâu đất */
+    --border-radius: 4px;          /* Bo góc ít hơn để cứng cáp */
+    --shadow: 4px 4px 0px rgba(44, 36, 27, 0.15); /* Bóng cứng (Retro style) */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color); /* Màu giấy cũ (#f4ecd8) */
+    background-image: none; /* QUAN TRỌNG: Đảm bảo không có ảnh ở đây */
+    color: var(--text-color);
+    line-height: 1.6;
+    font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Playfair Display', serif; /* Tiêu đề dùng font có chân cổ điển */
+}
+
+/* Utilities */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+.text-center { text-align: center; }
+.text-primary { color: var(--primary-color); }
+.mb-2 { margin-bottom: 1rem; }
+.mb-4 { margin-bottom: 2rem; }
+
+/* ============ HEADER CÓ ẢNH NỀN ============ */
+header.main-header {
+    /* Cú pháp: Lớp phủ màu tối mờ (để dễ đọc chữ) + Đường dẫn ảnh của bạn */
+    background-image: linear-gradient(rgba(44, 36, 27, 0.8), rgba(44, 36, 27, 0.6)), 
+                      url('../images/article.jpg'); /* <--- THAY ĐƯỜNG DẪN ẢNH CỦA BẠN VÀO ĐÂY */
+    
+    background-size: cover;    /* Co giãn ảnh để phủ kín header */
+    background-position: center; /* Luôn căn giữa ảnh */
+    background-repeat: no-repeat; /* Tuyệt đối không lặp lại ảnh */
+    
+    color: #eaddcf;
+    padding: 100px 0 60px;
+    margin-bottom: 50px;
+    border-bottom: 5px solid var(--primary-color);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+header h1 {
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    border-bottom: 2px solid var(--accent-color);
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+header p.subtitle {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-weight: 300;
+    font-size: 1.2rem;
+    font-style: italic;
+    opacity: 0.9;
+    margin-top: 15px;
+}
+
+/* Section Styling */
+.section-title {
+    font-size: 2.2rem;
+    color: var(--primary-color);
+    margin-bottom: 40px;
+    text-align: center;
+    text-transform: uppercase;
+    position: relative;
+    border-left: none; /* Bỏ border cũ */
+}
+
+/* Trang trí gạch chân kiểu cổ điển dưới tiêu đề */
+.section-title::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 3px;
+    background-color: var(--accent-color);
+    margin: 10px auto 0;
+}
+
+section { margin-bottom: 80px; }
+
+/* Cards - Phong cách giấy cũ */
+.intro-card, .card-content, .impact-card, .video-container-box, .relationship-container {
+    background: var(--card-bg);
+    padding: 30px;
+    border: 1px solid #d7ccc8;
+    box-shadow: var(--shadow);
+    position: relative;
+    border-radius: 2px;
+}
+
+/* Hiệu ứng ghim giấy ở góc (tạo cảm giác tài liệu) */
+.intro-card::before, .relationship-container::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 10px;
+    background: rgba(0,0,0,0.2);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+/* Definition Box */
+.definition-box {
+    background: transparent;
+    padding: 20px;
+    border: 3px double var(--primary-color); /* Viền đôi cổ điển */
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1.4rem;
+    margin: 40px 0;
+    color: var(--primary-color);
+}
+
+/* Grid Layout */
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+@media (max-width: 768px) { .grid-2 { grid-template-columns: 1fr; } }
+
+.concept-col h3 {
+    text-align: center;
+    background: var(--secondary-color);
+    color: var(--accent-color);
+    padding: 15px;
+    border: 1px solid var(--secondary-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0;
+}
+
+.concept-col.qhsx h3 { background: var(--primary-color); color: #fff; }
+
+.structure-item {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed #bcaaa4; /* Nét đứt màu nâu nhạt */
+}
+.structure-item:last-child { border-bottom: none; }
+
+.structure-item h4 {
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+/* Diagram Styling */
+.dialectic-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 40px;
+    padding: 20px;
+    background: rgba(215, 204, 200, 0.3); /* Nền mờ cho sơ đồ */
+    border-radius: 50px;
+}
+
+.box-entity {
+    background: var(--secondary-color);
+    padding: 15px 30px;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    color: var(--accent-color);
+    border: 2px solid var(--accent-color);
+    box-shadow: 3px 3px 0 rgba(0,0,0,0.2);
+}
+
+.box-entity.active {
+    background: var(--primary-color);
+    color: white;
+    border-color: white;
+}
+
+/* Mũi tên tác động */
+.arrow-line {
+    height: 2px;
+    background: var(--text-color);
+}
+.arrow-line::after { border-left: 10px solid var(--text-color); }
+.action-text {
+    background: var(--card-bg);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+}
+
+/* Impact Cards */
+.impact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+.impact-card {
+    background: #fff;
+    border-left: 5px solid var(--secondary-color);
+    border-radius: 0;
+}
+.impact-card.reverse {
+    border-left: 5px solid var(--primary-color);
+}
+
+/* Lesson Box */
+.lesson-box {
+    background: var(--secondary-color);
+    color: #eaddcf;
+    padding: 40px;
+    margin-top: 50px;
+    border: 2px solid var(--accent-color);
+    box-shadow: 10px 10px 0 rgba(0,0,0,0.2); /* Bóng đổ dày */
+}
+.lesson-box li::before { color: var(--accent-color); }
+
+/* Video */
+.video-container-box {
+    border-top: 4px solid var(--primary-color);
+    background: #000;
+    padding: 10px; /* Khung tranh đen bao quanh video */
+}
+.video-title { color: var(--card-bg); margin-bottom: 15px; } /* Chữ trắng trên nền đen */
+.video-responsive-wrapper { border: 1px solid #555; }
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-color);
+    border-top: 1px solid #bcaaa4;
+    font-style: italic;
+    font-family: 'Playfair Display', serif;
+}
+
+/* ============ HIỆU ỨNG JS ANIMATION (CSS CLASS) ============ */
+/* Trạng thái ẩn ban đầu */
+.hidden-scroll {
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateY(50px);
+    transition: all 1s ease-out; /* Thời gian chuyển động */
+}
+
+/* Trạng thái hiện ra khi cuộn tới */
+.show-scroll {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+}
+
+/* Hiệu ứng so le cho các phần tử con trong grid */
+.grid-2 .concept-col:nth-child(2) {
+    transition-delay: 0.2s; /* Cột phải hiện chậm hơn cột trái */
+}
+
+/* ============ VIDEO STYLE (Sửa lỗi bị nhỏ & Thêm phong cách cổ điển) ============ */
+.video-container-box {
+    /* Đưa video ra khỏi padding của container cha để rộng hơn */
+    margin: 40px -20px 20px -20px; 
+    
+    background: #1a1a1a; /* Màu đen của phim nhựa */
+    padding: 15px;
+    border: 4px double var(--accent-color); /* Viền đôi màu vàng đồng */
+    box-shadow: 
+        inset 0 0 20px rgba(0,0,0,0.8), /* Bóng đổ vào trong tạo chiều sâu */
+        0 10px 20px rgba(0,0,0,0.4);    /* Bóng đổ xuống nền */
+    border-radius: 4px;
+    position: relative;
+}
+
+/* Trang trí thêm đinh tán ở 4 góc (tạo cảm giác khung tranh cũ) */
+.video-container-box::after, .video-container-box::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.video-title {
+    color: #eaddcf; /* Màu giấy cũ sáng */
+    margin-bottom: 20px;
+    font-family: 'Playfair Display', serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #444;
+    padding-bottom: 10px;
+    text-shadow: 0 2px 4px rgba(0,0,0,1);
+}
+
+.video-title i {
+    color: #cc0000; /* Màu đỏ của icon Youtube */
+    margin-right: 10px;
+}
+
+/* QUAN TRỌNG: Kỹ thuật giữ tỷ lệ 16:9 để video không bị thu nhỏ */
+.video-responsive-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* Tỷ lệ 16:9 (9 chia 16 = 0.5625) */
+    height: 0;
+    overflow: hidden;
+    background-color: #000;
+    border: 1px solid #333;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
+.video-responsive-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
