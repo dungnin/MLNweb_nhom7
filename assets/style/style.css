@@ -1,6 +1,7 @@
 /* ============ IMPORT FONT CỔ ĐIỂN ============ */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Be+Vietnam+Pro:wght@300;400;600&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;0,900;1,400&family=Be+Vietnam+Pro:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Be+Vietnam+Pro:wght@300;400;600;700&display=swap');
 :root {
     /* Bảng màu Vintage */
     --primary-color: #8b0000;      /* Đỏ gạch sẫm (Màu cờ/cách mạng) */
@@ -28,7 +29,8 @@ body {
 }
 
 h1, h2, h3, h4 {
-    font-family: 'Playfair Display', serif; /* Tiêu đề dùng font có chân cổ điển */
+    font-family: 'Playfair Display', serif;
+    font-weight: 900; /* Tiêu đề cũng phải siêu đậm mới đẹp */
 }
 
 /* Utilities */
@@ -80,6 +82,7 @@ header p.subtitle {
     font-size: 2.2rem;
     color: var(--primary-color);
     margin-bottom: 40px;
+    margin-top: 40px;
     text-align: center;
     text-transform: uppercase;
     position: relative;
@@ -186,30 +189,102 @@ section { margin-bottom: 80px; }
     background: var(--secondary-color);
     padding: 15px 30px;
     font-family: 'Playfair Display', serif;
-    font-weight: 700;
+    font-weight: 900; /* Siêu đậm */
     color: var(--accent-color);
     border: 2px solid var(--accent-color);
-    box-shadow: 3px 3px 0 rgba(0,0,0,0.2);
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
 }
-
 .box-entity.active {
     background: var(--primary-color);
     color: white;
     border-color: white;
 }
 
-/* Mũi tên tác động */
+/* Mũi tên tác động
 .arrow-line {
     height: 2px;
     background: var(--text-color);
 }
-.arrow-line::after { border-left: 10px solid var(--text-color); }
+.arrow-line::after { border-left: 10px solid var(--text-color); } */
+
+.arrow-action {
+    display: flex;
+    flex-direction: column; /* Xếp chồng lên nhau */
+    align-items: center;    /* Căn giữa */
+    justify-content: center;
+    gap: 8px;               /* Khoảng cách giữa chữ và đường kẻ */
+    margin: 0 15px;         /* Khoảng cách với 2 ô CSHT/KTTT */
+    width: fit-content;     /* QUAN TRỌNG: Chỉ rộng bằng nội dung (chữ) */
+}
+
+/* 2. Style cho chữ (Quyết định / Tác động lại) */
+.action-text {
+    position: static; /* Không dùng absolute nữa */
+    transform: none;
+    
+    /* Style khung chữ */
+    border: 2px solid var(--primary-color);
+    padding: 8px 15px;
+    background: var(--card-bg);
+    color: var(--primary-color);
+    
+    /* Font chữ */
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    white-space: nowrap; /* Không xuống dòng */
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+}
+
+/* 3. Thân mũi tên (Đường kẻ) */
+.arrow-line {
+    width: 100%; /* QUAN TRỌNG: Dài 100% so với khung cha (tức là bằng chiều dài chữ) */
+    height: 3px;
+    background-color: var(--text-color);
+    position: relative;
+    border-radius: 2px;
+}
+
+/* 4. Đầu mũi tên (Vẽ bằng tam giác CSS) */
+/* Mũi tên hướng Phải */
+.arrow-line::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: -10px; /* Đẩy đầu mũi tên ra ngoài mép phải đường kẻ */
+    
+    /* Vẽ tam giác */
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    border-left: 12px solid var(--text-color);
+}
+
+/* Mũi tên hướng Trái (Reverse) */
+.arrow-line.reverse::after {
+    left: -10px; /* Đẩy đầu mũi tên ra ngoài mép trái */
+    right: auto;
+    
+    /* Vẽ tam giác ngược */
+    border-left: none;
+    border-right: 12px solid var(--text-color);
+}
+
 .action-text {
     background: var(--card-bg);
     color: var(--primary-color);
-    border: 1px solid var(--primary-color);
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
+    border: 2px solid var(--primary-color); /* Tăng viền lên 2px cho dày dặn */
+    
+    font-family: 'Playfair Display', serif; /* Dùng font sang trọng */
+    font-weight: 900;  /* <--- ĐÂY LÀ CHÌA KHÓA: Mức 900 là siêu dày */
+    font-style: normal; /* Chữ đứng, không nghiêng nữa cho giống mẫu */
+    font-size: 1rem;    /* Tăng kích cỡ chữ lên chút */
+    text-transform: uppercase; /* Viết hoa toàn bộ cho quyền lực (tùy chọn) */
+    letter-spacing: 1px; /* Giãn chữ ra cho thoáng, sang hơn */
+    
+    /* Đổ bóng nhẹ cho chữ nổi lên */
+    text-shadow: 1px 1px 0 rgba(255,255,255,0.5); 
 }
 
 /* Impact Cards */
@@ -337,4 +412,107 @@ footer {
     width: 100%;
     height: 100%;
     border: none;
+}
+
+/* ============ SƠ ĐỒ CÂY (ORG CHART) ============ */
+.tree-container {
+    width: 100%;
+    overflow-x: auto; /* Cho phép cuộn ngang nếu màn hình nhỏ */
+    padding: 20px 0;
+    text-align: center;
+}
+
+.tree {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tree ul {
+    padding-top: 20px; 
+    position: relative;
+    transition: all 0.5s;
+    display: flex;
+    justify-content: center;
+}
+
+.tree li {
+    float: left; text-align: center;
+    list-style-type: none;
+    position: relative;
+    padding: 20px 5px 0 5px;
+    transition: all 0.5s;
+}
+
+/* Vẽ đường nối (Connectors) */
+.tree li::before, .tree li::after{
+    content: '';
+    position: absolute; top: 0; right: 50%;
+    border-top: 2px solid var(--text-color);
+    width: 50%; height: 20px;
+}
+.tree li::after{
+    right: auto; left: 50%;
+    border-left: 2px solid var(--text-color);
+}
+
+/* Xóa đường nối thừa ở nhánh đầu và cuối */
+.tree li:first-child::before, .tree li:last-child::after{
+    border: 0 none;
+}
+.tree li:last-child::before{
+    border-right: 2px solid var(--text-color);
+    border-radius: 0 5px 0 0;
+}
+.tree li:first-child::after{
+    border-radius: 5px 0 0 0;
+}
+
+/* Xóa đường nối ở node gốc */
+.tree ul ul::before{
+    content: '';
+    position: absolute; top: 0; left: 50%;
+    border-left: 2px solid var(--text-color);
+    width: 0; height: 20px;
+}
+
+/* Style cho các ô nội dung (Nodes) */
+.tree-node {
+    border: 2px solid var(--secondary-color);
+    padding: 10px 15px;
+    text-decoration: none;
+    color: var(--text-color);
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: inline-block;
+    border-radius: 4px;
+    transition: all 0.5s;
+    background: #fff;
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+    min-width: 120px;
+}
+
+/* Node gốc (LLSX) */
+.tree-root .tree-node {
+    background: var(--primary-color);
+    color: #fff;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    border-color: var(--primary-color);
+}
+
+/* Các cấp con */
+.tree-level-1 .tree-node {
+    background: var(--secondary-color);
+    color: var(--accent-color);
+}
+
+/* Hover effect */
+.tree-node:hover {
+    background: var(--accent-color);
+    color: #fff;
+    border-color: var(--accent-color);
+    transform: translateY(-3px);
 }
